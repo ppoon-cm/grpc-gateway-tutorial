@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -68,5 +69,15 @@ func main() {
 
 	log.Println("Serving gRPC-Gateway on http://0.0.0.0:8090")
 	log.Fatalln(gwServer.ListenAndServe())
+
+	// Serve Swagger JSON
+	http.Handle("/swagger/", http.StripPrefix("/swagger/", http.FileServer(http.Dir("gen/go"))))
+
+	// Start Swagger server
+	port := 8080
+	fmt.Printf("Serving Swagger at http://localhost:%d/swagger/hello_world.swagger.json\n", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+   
+
 }
 

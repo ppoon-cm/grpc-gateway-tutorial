@@ -21,6 +21,7 @@ This is a basic Hello World gRPC-Gateway repository.  It derives from the tutori
 
     ```
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+    go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
     go install google.golang.org/grpc/reflection
@@ -77,3 +78,16 @@ This repository derives from the gRPC-Gateway tutorial at https://grpc-ecosystem
     ```
     option go_package = "github.com/myuser/myrepo/proto";
     ```
+
+## Swagger UI (OpenAPI)
+
+Following instructions at https://blainsmith.com/articles/go-grpc-gateway-openapi/, we copy the entire `/dist` directory from https://github.com/swagger-api/swagger-ui into the `<root>/third_party` directory, using `git sparse-checkout` as explained at https://stackoverflow.com/a/52269934:
+```
+git clone -n --depth=1 --filter=tree:0 git@github.com:swagger-api/swagger-ui.git 
+cd swagger-ui/
+git sparse-checkout set --no-cone /dist
+git checkout
+
+```
+
+
