@@ -81,13 +81,4 @@ This repository derives from the gRPC-Gateway tutorial at https://grpc-ecosystem
 
 ## Swagger UI (OpenAPI)
 
-Following instructions at https://blainsmith.com/articles/go-grpc-gateway-openapi/, we copy the entire `/dist` directory from https://github.com/swagger-api/swagger-ui into the `<root>/third_party` directory, using `git sparse-checkout` as explained at https://stackoverflow.com/a/52269934:
-```
-git clone -n --depth=1 --filter=tree:0 git@github.com:swagger-api/swagger-ui.git 
-cd swagger-ui/
-git sparse-checkout set --no-cone /dist
-git checkout
-
-```
-
-
+Following instructions at https://blainsmith.com/articles/go-grpc-gateway-openapi/, we `git clone https://github.com/swagger-api/swagger-ui` and copied the entire `/dist` directory into the `/third_party/swagger-ui` directory. Initial attempts to use `git sparse-checkout` and `git submodule` did not yield any discernable benefits.
