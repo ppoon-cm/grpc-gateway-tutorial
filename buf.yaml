@@ -4,6 +4,7 @@ modules:
     name: buf.build/myuser/myrepo
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway
 lint:
   except:
     - FIELD_NOT_REQUIRED

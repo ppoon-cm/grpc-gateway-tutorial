@@ -21,6 +21,7 @@ This is a basic Hello World gRPC-Gateway repository.  It derives from the tutori
 
     ```
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+    go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
     go install google.golang.org/grpc/reflection
@@ -55,12 +56,12 @@ go run main.go
 
 #### HTTP
 ```
-curl -X POST -k http://localhost:8090/v1/example/echo -d '{"name": " hello"}'
+curl -X POST -k http://localhost:8080/v1/example/echo -d '{"name": " hello"}'
 ```
 
 #### gPRC
 ```
-grpcurl -plaintext -d '{"name": "Alice"}' 0.0.0.0:8080 helloworld.Greeter/SayHello
+grpcurl -plaintext -d '{"name": "Alice"}' 0.0.0.0:5566 helloworld.Greeter/SayHello
 ```
 
 # Notes
@@ -77,3 +78,7 @@ This repository derives from the gRPC-Gateway tutorial at https://grpc-ecosystem
     ```
     option go_package = "github.com/myuser/myrepo/proto";
     ```
+
+## Swagger UI (OpenAPI)
+
+Following instructions at https://blainsmith.com/articles/go-grpc-gateway-openapi/, we `git clone https://github.com/swagger-api/swagger-ui` and copied the entire `/dist` directory into the `/third_party/swagger-ui` directory. Initial attempts to use `git sparse-checkout` and `git submodule` did not yield any discernable benefits.
