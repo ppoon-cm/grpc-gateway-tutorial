@@ -56,12 +56,12 @@ go run main.go
 
 #### HTTP
 ```
-curl -X POST -k http://localhost:8090/v1/example/echo -d '{"name": " hello"}'
+curl -X POST -k http://localhost:8080/v1/example/echo -d '{"name": " hello"}'
 ```
 
 #### gPRC
 ```
-grpcurl -plaintext -d '{"name": "Alice"}' 0.0.0.0:8080 helloworld.Greeter/SayHello
+grpcurl -plaintext -d '{"name": "Alice"}' 0.0.0.0:5566 helloworld.Greeter/SayHello
 ```
 
 # Notes
