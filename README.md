@@ -49,7 +49,7 @@ This is a basic Hello World gRPC-Gateway repository.  It derives from the tutori
 ### Start the gRPC-Gateway
 
 ```
-go run main.go
+go run cmd/main.go
 ```
 
 ### Make HTTP and gRPC Requests
