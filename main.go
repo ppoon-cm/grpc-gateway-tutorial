@@ -7,25 +7,13 @@ import (
 	"net/http"
 
 	// "github.com/blainsmith/grpc-gateway-openapi-example/gen/protos/go/protos"
-	// "github.com/blainsmith/grpc-gateway-openapi-example/service"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	helloworldpb "github.com/myuser/myrepo/gen/go"
+	"github.com/myuser/myrepo/service" // import the hello service package
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
 )
-
-type server struct{
-	helloworldpb.UnimplementedGreeterServer
-}
-
-func NewServer() *server {
-	return &server{}
-}
-
-func (s *server) SayHello(ctx context.Context, in *helloworldpb.HelloRequest) (*helloworldpb.HelloReply, error) {
-	return &helloworldpb.HelloReply{Message: in.Name + " world"}, nil
-}
 
 func main() {
 	ctx := context.Background()
@@ -38,7 +26,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	helloworldpb.RegisterGreeterServer(grpcServer, &server{})
+	helloworldpb.RegisterGreeterServer(grpcServer, service.NewServer())
 	reflection.Register(grpcServer)
 	log.Println("gRPC server ready on localhost:5566...")
 	go grpcServer.Serve(lis)
