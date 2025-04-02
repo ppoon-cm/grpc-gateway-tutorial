@@ -9,7 +9,7 @@ import (
 	// "github.com/blainsmith/grpc-gateway-openapi-example/gen/protos/go/protos"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	helloworldpb "github.com/myuser/myrepo/gen/go"
-	"github.com/myuser/myrepo/service" // import the hello service package
+	"github.com/myuser/myrepo/service/hello" // import the hello service package
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
@@ -26,7 +26,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	helloworldpb.RegisterGreeterServer(grpcServer, service.NewServer())
+	helloworldpb.RegisterGreeterServer(grpcServer, hello.NewServer())
 	reflection.Register(grpcServer)
 	log.Println("gRPC server ready on localhost:5566...")
 	go grpcServer.Serve(lis)
