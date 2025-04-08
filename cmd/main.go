@@ -8,8 +8,9 @@ import (
 
 	// "github.com/blainsmith/grpc-gateway-openapi-example/gen/protos/go/protos"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	helloworldpb "github.com/myuser/myrepo/gen/go"
-	"github.com/myuser/myrepo/service/hello" // import the hello service package
+	protos "github.com/myuser/myrepo/gen/go"
+	"github.com/myuser/myrepo/service/health" // import the hello service package
+	"github.com/myuser/myrepo/service/hello"  // import the hello service package
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
@@ -26,7 +27,8 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	helloworldpb.RegisterGreeterServer(grpcServer, hello.NewServer())
+	protos.RegisterGreeterServer(grpcServer, hello.NewServer())
+	protos.RegisterHealthCheckServer(grpcServer, health.NewServer())
 	reflection.Register(grpcServer)
 	log.Println("gRPC server ready on localhost:5566...")
 	go grpcServer.Serve(lis)
@@ -45,7 +47,11 @@ func main() {
 	// create an HTTP router using the client connection above
 	// and register it with the service client
 	rmux := runtime.NewServeMux()
-	err = helloworldpb.RegisterGreeterHandler(ctx, rmux, conn)
+	err = protos.RegisterGreeterHandler(ctx, rmux, conn)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = protos.RegisterHealthCheckHandler(ctx, rmux, conn)
 	if err != nil {
 		log.Fatal(err)
 	}
