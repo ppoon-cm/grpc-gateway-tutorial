@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package healthcheck;
+
+option go_package = "github.com/myuser/myrepo/proto";
+
+import "google/api/annotations.proto";
+import "buf/validate/validate.proto";
+
+// The greeting service definition
+service HealthCheck {
+  // Sends a greeting
+  rpc HealthLive (HealthCheckRequest) returns (HealthCheckReply) {
+    option (google.api.http) = {
+      get: "/health/live"
+    };
+  }
+}
+
+// The request message containing the user's name
+message HealthCheckRequest {}
+
+// The response message containing the greetings
+message HealthCheckReply {
+  string status = 1 [
+    (buf.validate.field).cel = {
+      id: "status_allowed_values"
+      expression: "this in ['UP', 'DOWN', 'OUT_OF_SERVICE', 'UNKNOWN']"
+      message: "name bust be one of: up, down, out_of_service, unknown"
+    }
+  ];
+}
+

@@ -25,6 +25,7 @@ This is a basic Hello World gRPC-Gateway repository.  It derives from the tutori
     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
     go install google.golang.org/grpc/reflection
+    go get buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate
     ```
 
 - Install Command-Line Tools
