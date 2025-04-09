@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package healthcheck;
 
-option go_package = "github.com/myuser/myrepo/proto";
+option go_package = "github.com/ClearMotion/microservice-base-go/proto";
 
 import "google/api/annotations.proto";
 import "buf/validate/validate.proto";

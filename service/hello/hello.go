@@ -3,7 +3,7 @@ package hello
 import (
 	"context"
 
-	helloworldpb "github.com/myuser/myrepo/gen/go"
+	helloworldpb "github.com/ClearMotion/microservice-base-go/gen/go"
 )
 
 type server struct{

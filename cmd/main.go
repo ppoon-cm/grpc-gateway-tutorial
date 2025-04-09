@@ -7,10 +7,10 @@ import (
 	"net/http"
 
 	// "github.com/blainsmith/grpc-gateway-openapi-example/gen/protos/go/protos"
+	protos "github.com/ClearMotion/microservice-base-go/gen/go"
+	"github.com/ClearMotion/microservice-base-go/service/health" // import the hello service package
+	"github.com/ClearMotion/microservice-base-go/service/hello"  // import the hello service package
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	protos "github.com/myuser/myrepo/gen/go"
-	"github.com/myuser/myrepo/service/health" // import the hello service package
-	"github.com/myuser/myrepo/service/hello"  // import the hello service package
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"

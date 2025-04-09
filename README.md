@@ -77,7 +77,7 @@ This repository derives from the gRPC-Gateway tutorial at https://grpc-ecosystem
 - Had to replace the `out` field value of the plugins to `gen/go`.
 - In the `proto/hello_world.proto` file, I had to insert the line:
     ```
-    option go_package = "github.com/myuser/myrepo/proto";
+    option go_package = "github.com/ClearMotion/microservice-base-go/proto";
     ```
 
 ## Swagger UI (OpenAPI)

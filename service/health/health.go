@@ -3,7 +3,7 @@ package health
 import (
 	"context"
 
-	healthcheck "github.com/myuser/myrepo/gen/go"
+	healthcheck "github.com/ClearMotion/microservice-base-go/gen/go"
 )
 
 type healthserver struct{
